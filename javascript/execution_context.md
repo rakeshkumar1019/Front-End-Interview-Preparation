@@ -29,7 +29,7 @@ Once memory is allocated, the JavaScript engine executes the code **line-by-line
 --- 
 ## 📚 The Call Stack
 
-The **Call Stack** is a LIFO (Last In, First Out) structure used to track the order of execution contexts.
+The **Call Stack** is a LIFO (Last In, First Out) structure used to track the order of execution of execution contexts.
 
 ---
   
