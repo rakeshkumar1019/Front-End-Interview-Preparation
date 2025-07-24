@@ -68,6 +68,42 @@ const c = 5;
 - var is hoisted and initialized as undefined.
 - let and const are hoisted but not initialized, and live in a Temporal Dead Zone (TDZ) until declared.
 
+## Execution Context & Hoisting Explained
+When JavaScript executes code, it creates an Execution Context. This has two phases:
+
+1. Memory Creation Phase
+The engine scans the code and allocates memory for variables and functions.
+
+2. Code Execution Phase
+Variables are assigned values and functions are invoked.
+
+## What Happens During Hoisting?
+| Keyword | Memory Creation Phase                         | Code Execution Phase              |
+| ------- | --------------------------------------------- | --------------------------------- |
+| `var`   | Hoisted & initialized with `undefined`        | Value is assigned when reached    |
+| `let`   | Hoisted but **not initialized** (TDZ applies) | Error if accessed before declared |
+| `const` | Hoisted but **not initialized** (TDZ applies) | Must be initialized immediately   |
+
+## How JavaScript sees it internally:
+```javascript
+// Memory Creation Phase
+var x = undefined;
+let y; // TDZ starts
+const z; // TDZ starts
+
+// Execution Phase
+console.log(x); // undefined
+x = 10;
+
+console.log(y); // Error: TDZ
+y = 20;
+
+console.log(z); // Error: TDZ
+z = 30; // const must also be initialized here
+
+```
+
+
 ## Best Practices
 | Use This | When                                                                  |
 | -------- | --------------------------------------------------------------------- |
