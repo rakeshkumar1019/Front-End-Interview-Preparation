@@ -26,6 +26,11 @@ Once memory is allocated, the JavaScript engine executes the code **line-by-line
 - Function calls result in new **Function Execution Contexts** that are pushed onto the **Call Stack**.
 - When a function finishes executing, its context is removed (popped) from the stack, and control returns to the previous context.
 
+--- 
+## 📚 The Call Stack
+
+The **Call Stack** is a LIFO (Last In, First Out) structure used to track the order of execution contexts.
+
 ---
   
 | Memory       | Code |
@@ -53,6 +58,11 @@ var square4 = square(4)
 | `square2: undefined`     |      |
 | `square4: undefined`     |      |
 
+### Call Stack
+
+| Global EC |
+|---|
+
 2. **Code Execution Phase(Thread Of Execution)**:
 
 - Javascript again scan the whole code line by line and assign acutal values to an varaibles by replacing the `undefined` keyword.
@@ -68,6 +78,13 @@ var square4 = square(4)
 | `square4: undefined`     |      |
 
 new function invocation execution context(ex1) :
+### Call Stack
+
+| square(2) (Ex1) |
+|------|
+| Global EC |
+
+
 1. Memory Phase(Varaible Environment)
    
 | Memory         | Code |
@@ -83,6 +100,11 @@ new function invocation execution context(ex1) :
 | `ans: 4`     | `return ans` → return to global context and this context will be deleted. |
 
 - The result 4 is returned and assigned to square2. ex1 is destroyed.
+
+### Call Stack
+
+| Global EC |
+|---|
 
 | Memory         | Code |
 |----------------|------|
@@ -100,6 +122,11 @@ new function invocation execution context(ex1) :
 | `square2: 4`     |   (ex1)(Deleted)  |
 | `square4: undefined`     |  new function invocation execution context(ex2)    |
 
+### Call Stack
+
+| square(4) (Ex2) |
+|------|
+| Global EC |
 
 new function invocation execution context(ex2) :
 1. Memory Phase(Varaible Environment)
@@ -117,6 +144,10 @@ new function invocation execution context(ex2) :
 | `ans: 16`     | `return ans` → return to global context and this function context will be deleted. |
 
 -  The result 16 is returned and assigned to square4. ex2 is destroyed.
+### Call Stack
+
+| Global EC |
+|---|
   
 | Memory         | Code |
 |----------------|------|
@@ -124,6 +155,9 @@ new function invocation execution context(ex2) :
 | `square: function square(num) { var ans = num * num; return ans; }` | |
 | `square2: 4`     |   (ex1)(Deleted)  |
 | `square4: 16`     |  (ex2)(Deleted)  |
+
+### Call Stack After All Executions:
+(empty) 👋 (Global EC popped after program ends)
 
 ## Visual Representation
 ![Execution Context](https://github.com/rakeshkumar1019/Front-End-Interview-Preparation/raw/main/images/execution_context.png)
