@@ -28,5 +28,85 @@ function square(num) {
 }
 var square2 = square(2)
 var square4 = square(4)
-
 ```
+1. **Memory Phase(Varaible Environment)**:
+- Allocate memory to varaibles with `undefined` keyword and for functions whole defination of the function.
+   
+| Memory         | Code |
+|----------------|------|
+| `n: undefined` |      |
+| `square: function square(num) { var ans = num * num; return ans; }` | |
+| `square2: undefined`     |      |
+| `square4: undefined`     |      |
+
+2. **Code Execution Phase(Thread Of Execution)**:
+- Javascript again scan the whole code line by line and assign acutal values to an varaibles by replacing the `undefined` keyword.
+- value 2 is assgined to `n`.
+- skip `square` as it just an function definataion.
+- square2 = square(2) function invocation.in this case again new execution context is created for this function `square`
+
+| Memory         | Code |
+|----------------|------|
+| `n: 2` |      |
+| `square: function square(num) { var ans = num * num; return ans; }` | |
+| `square2: undefined`     |   new function invocation execution context(ex1)   |
+| `square4: undefined`     |      |
+
+new function invocation execution context(ex1) :
+1. Memory Phase(Varaible Environment)
+   
+| Memory         | Code |
+|----------------|------|
+| `num: undefined` |      |
+| `ans: undefined`     |   |
+
+2. Code Execution Phase(Thread Of Execution)
+   
+| Memory         | Code |
+|----------------|------|
+| `num: 2` |  `num * num`    |
+| `ans: 4`     | as soon it sees `return ans` goes back to  `square2: undefined` to `square2: 4` in main execution context and this function conntext will be deleted. |
+
+| Memory         | Code |
+|----------------|------|
+| `n: 2` |      |
+| `square: function square(num) { var ans = num * num; return ans; }` | |
+| `square2: 4`     |   new function invocation execution context(ex1)   |
+| `square4: undefined`     |      |
+
+
+| Memory         | Code |
+|----------------|------|
+| `n: 2` |      |
+| `square: function square(num) { var ans = num * num; return ans; }` | |
+| `square2: 4`     |   new function invocation execution context(ex1)(Deleted)  |
+| `square4: undefined`     |  new function invocation execution context(ex2)    |
+
+
+new function invocation execution context(ex2) :
+1. Memory Phase(Varaible Environment)
+   
+| Memory         | Code |
+|----------------|------|
+| `num: undefined` |      |
+| `ans: undefined`     |   |
+
+2. Code Execution Phase(Thread Of Execution)
+   
+| Memory         | Code |
+|----------------|------|
+| `num: 4` |  `num * num`    |
+| `ans: 16`     | as soon it sees `return ans` goes back to  `square4: undefined` to `square4: 16` in main execution context and this function conntext will be deleted. |
+
+
+| Memory         | Code |
+|----------------|------|
+| `n: 2` |      |
+| `square: function square(num) { var ans = num * num; return ans; }` | |
+| `square2: 4`     |   new function invocation execution context(ex1)(Deleted)  |
+| `square4: 16`     |  new function invocation execution context(ex2)(Deleted)  |
+
+
+- when it reaches to last line of code the whole execution context is deleted.
+
+
