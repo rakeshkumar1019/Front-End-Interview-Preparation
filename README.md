@@ -143,12 +143,14 @@ Follow it step by step from **beginner → advanced**.
 
 ## 5. 🟥 Microservices (Backend Architecture)
 
-### 🔹 Core Principles
-- Single Responsibility Principle
-- Database per service
-- API Gateway pattern
-- Service discovery
-- Event-driven architecture
+### 🔹 Common Microservice Patterns
+- Saga Pattern (Distributed Transactions)
+- API Gateway Pattern
+- Circuit Breaker Pattern
+- Sidecar Pattern
+- CQRS (Command Query Responsibility Segregation)
+- Event Sourcing
+- Strangler Fig Pattern
 
 ### 🔹 Communication
 - Synchronous (REST, gRPC)
